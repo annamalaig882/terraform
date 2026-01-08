@@ -26,6 +26,8 @@ resource "aws_internet_gateway" "igw" {
 }
 
 
+
+
 #Subnets
 resource "aws_subnet" "public_web" {
   vpc_id                  = aws_vpc.laza_vpc.id
@@ -326,7 +328,7 @@ resource "aws_instance" "web" {
   associate_public_ip_address = true
 
   root_block_device {
-    volume_size = 30
+    volume_size = 32
     volume_type = "gp3"
   }
 
@@ -340,7 +342,7 @@ resource "aws_instance" "app" {
   key_name               = var.key_name
   vpc_security_group_ids = [aws_security_group.app_sg.id]
   root_block_device {
-    volume_size = 30
+    volume_size = 64
     volume_type = "gp3"
   }
 
@@ -402,4 +404,6 @@ resource "aws_eip" "web_eip" {
     Name = "laza-web-eip"
   }
 }
+
+
 
