@@ -32,7 +32,7 @@ resource "aws_internet_gateway" "igw" {
 # Public subnet (Web)
 resource "aws_subnet" "public_web" {
   vpc_id                  = aws_vpc.laza_vpc.id
-  cidr_block              = "10.0.1.0/24"
+  cidr_block              = "10.25.1.0/24"
   availability_zone       = "ap-south-1a"
   map_public_ip_on_launch = false
 
@@ -47,7 +47,7 @@ resource "aws_subnet" "public_web" {
 # Private subnets
 resource "aws_subnet" "private_app" {
   vpc_id            = aws_vpc.laza_vpc.id
-  cidr_block        = "10.0.2.0/24"
+  cidr_block        = "10.25.2.0/24"
   availability_zone = "ap-south-1a"
 
   tags = {
@@ -57,7 +57,7 @@ resource "aws_subnet" "private_app" {
 
 resource "aws_subnet" "private_central" {
   vpc_id            = aws_vpc.laza_vpc.id
-  cidr_block        = "10.0.3.0/24"
+  cidr_block        = "10.25.3.0/24"
   availability_zone = "ap-south-1b"
 
   tags = {
@@ -67,7 +67,7 @@ resource "aws_subnet" "private_central" {
 
 resource "aws_subnet" "private_mongo_1" {
   vpc_id            = aws_vpc.laza_vpc.id
-  cidr_block        = "10.0.4.0/24"
+  cidr_block        = "10.25.4.0/24"
   availability_zone = "ap-south-1a"
 
   tags = {
@@ -77,7 +77,7 @@ resource "aws_subnet" "private_mongo_1" {
 
 resource "aws_subnet" "private_mongo_2" {
   vpc_id            = aws_vpc.laza_vpc.id
-  cidr_block        = "10.0.5.0/24"
+  cidr_block        = "10.25.5.0/24"
   availability_zone = "ap-south-1a"
 
   tags = {
@@ -87,7 +87,7 @@ resource "aws_subnet" "private_mongo_2" {
 
 resource "aws_subnet" "private_mongo_3" {
   vpc_id            = aws_vpc.laza_vpc.id
-  cidr_block        = "10.0.6.0/24"
+  cidr_block        = "10.25.6.0/24"
   availability_zone = "ap-south-1b"
 
   tags = {
