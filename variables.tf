@@ -3,7 +3,7 @@ variable "aws_region" {
 }
 
 variable "vpc_cidr" {
-  default = "10.0.0.1/16"
+  default = "10.25.0.0/16"
 }
 
 variable "instance_ami" {
