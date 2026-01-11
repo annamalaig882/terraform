@@ -29,6 +29,7 @@ resource "aws_internet_gateway" "igw" {
 
 
 #Subnets
+# Public subnet (Web)
 resource "aws_subnet" "public_web" {
   vpc_id                  = aws_vpc.laza_vpc.id
   cidr_block              = "10.0.1.0/24"
@@ -41,7 +42,7 @@ resource "aws_subnet" "public_web" {
 }
 
 
-# Public subnet (Web)
+
 
 # Private subnets
 resource "aws_subnet" "private_app" {
@@ -255,15 +256,10 @@ resource "aws_security_group" "central_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    security_groups = [aws_security_group.web_sg.id]
   }
 
-  ingress {
-    from_port   = 8080
-    to_port     = 8080
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+  
 
   egress {
     from_port   = 0
