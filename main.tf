@@ -279,10 +279,7 @@ resource "aws_security_group" "mongo_sg" {
     from_port = 22
     to_port   = 22
     protocol  = "tcp"
-    security_groups = [
-      aws_security_group.app_sg.id,
-      aws_security_group.central_sg.id
-    ]
+    security_groups = [aws_security_group.web_sg.id]
   }
 
   ingress {
@@ -293,6 +290,12 @@ resource "aws_security_group" "mongo_sg" {
       aws_security_group.app_sg.id,
       aws_security_group.central_sg.id
     ]
+  }
+  ingress {
+    from_port = 8501
+    to_port   = 8501
+    protocol  = "tcp"
+    security_groups = [aws_security_group.web_sg.id]
   }
 
   egress {
