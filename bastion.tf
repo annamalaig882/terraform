@@ -48,8 +48,9 @@ resource "aws_iam_instance_profile" "eks_admin_profile" {
 
 resource "aws_key_pair" "eks_bastion_key" {
   key_name   = "eks-bastion-key"
-  public_key = file("~/.ssh/eks-bastion-key.pub")
+  public_key = file("${path.module}/eks-bastion-key.pub")
 }
+
 
 ################################
 # Security Group for Bastion
