@@ -46,10 +46,7 @@ resource "aws_iam_instance_profile" "eks_admin_profile" {
 # Key Pair (PEM file)
 ################################
 
-resource "aws_key_pair" "eks_bastion_key" {
-  key_name   = "eks-bastion-key"
-  public_key = file("${path.module}/eks-bastion-key.pub")
-}
+key_name = "eks-bastion-key"
 
 
 ################################
@@ -86,7 +83,7 @@ resource "aws_security_group" "bastion_sg" {
 ################################
 
 resource "aws_instance" "eks_bastion" {
-  ami                         = "ami-03f4878755434977f" # Ubuntu 22.04 (ap-south-1)
+  ami                         = "ami-03f4878755434977f" # Ubuntu 22.04
   instance_type               = "t3.micro"
   subnet_id                   = aws_subnet.public_subnet_1.id
   associate_public_ip_address = true
@@ -96,7 +93,7 @@ resource "aws_instance" "eks_bastion" {
   ]
 
   iam_instance_profile = aws_iam_instance_profile.eks_admin_profile.name
-  key_name             = aws_key_pair.eks_bastion_key.key_name
+  key_name             = "eks-bastion-key"  # EXISTING KEY
 
   tags = {
     Name = "eks-bastion"
