@@ -46,7 +46,7 @@ resource "aws_iam_instance_profile" "eks_admin_profile" {
 # Key Pair (PEM file)
 ################################
 
-key_name = "eks-bastion-key"
+
 
 
 ################################
