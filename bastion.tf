@@ -89,7 +89,7 @@ resource "aws_security_group" "bastion_sg" {
 }
 
 ################################
-# EC2 Bastion / Jenkins Instance
+# EC2 Bastion  Instance
 ################################
 
 resource "aws_instance" "eks_bastion" {
