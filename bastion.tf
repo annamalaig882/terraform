@@ -23,14 +23,28 @@ resource "aws_iam_role" "eks_admin_role" {
 # Attach EKS Policies
 ################################
 
-resource "aws_iam_role_policy_attachment" "eks_admin_cluster_policy" {
-  role       = aws_iam_role.eks_admin_role.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
+resource "aws_iam_policy" "eks_admin_policy" {
+  name        = "eks-admin-policy"
+  path        = "/"
+  description = "EKS Admin Policy"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "eks:*"
+        ]
+        Effect   = "Allow"
+        Resource = "*"
+      },
+    ]
+  })
 }
 
-resource "aws_iam_role_policy_attachment" "eks_admin_service_policy" {
+resource "aws_iam_role_policy_attachment" "eks_admin_policy_attach" {
   role       = aws_iam_role.eks_admin_role.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSServicePolicy"
+  policy_arn = aws_iam_policy.eks_admin_policy.arn
 }
 
 ################################
