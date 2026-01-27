@@ -17,4 +17,6 @@ resource "aws_nat_gateway" "nat" {
   tags = {
     Name = "eks-nat"
   }
+
+  depends_on = [aws_internet_gateway.igw]
 }
